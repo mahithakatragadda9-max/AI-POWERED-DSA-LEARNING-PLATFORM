@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": "ip_1",
+      "title": "Reverse a Linked List",
+      "topic": "Linked List",
+      "difficulty": "Medium",
+      "description": "Given the head of a singly linked list, reverse the list, and return the modified head pointer. Optimize for O(N) time and O(1) space constraints."
+    },
+    {
+      "id": "ip_2",
+      "title": "Evaluate Reverse Polish Notation",
+      "topic": "Stacks",
+      "difficulty": "Medium",
+      "description": "You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation. Evaluate the expression using a Stack structure."
+    },
+    {
+      "id": "ip_3",
+      "title": "Merge k Sorted Lists",
+      "topic": "Linked List",
+      "difficulty": "Hard",
+      "description": "You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it."
+    },
+    {
+      "id": "ip_4",
+      "title": "Implement Queue using Stacks",
+      "topic": "Queue",
+      "difficulty": "Easy",
+      "description": "Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue (push, peek, pop, and empty)."
+    }
+  ]
+}

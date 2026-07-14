@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Queue Visualizer</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="practice-page">
+
+    <h1 class="practice-title">
+        Queue Visualizer
+    </h1>
+
+    <p class="practice-subtitle">
+        Learn Enqueue & Dequeue operations clearly
+    </p>
+
+    <!-- ENQUEUE SECTION -->
+    <div class="operation-card">
+
+        <h2>Enqueue Operation</h2>
+
+        <p>
+            Enqueue adds an element to the REAR of the queue.
+        </p>
+
+        <div class="op-controls">
+
+            <input 
+            class="visual-input"
+            type="number"
+            id="queueInput"
+            placeholder="Enter number">
+
+            <button class="visual-btn" onclick="enqueue()">
+                Enqueue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- DEQUEUE SECTION -->
+    <div class="operation-card">
+
+        <h2>Dequeue Operation</h2>
+
+        <p>
+            Dequeue removes an element from the FRONT of the queue.
+        </p>
+
+        <div class="op-controls">
+
+            <button class="visual-btn" onclick="dequeue()">
+                Dequeue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUEUE DISPLAY -->
+    <div id="queueBox"
+    class="queue-box-container">
+
+    </div>
+
+</div>
+
+
+<script>
+
+let queue = [10, 20, 30];
+
+function renderQueue(){
+
+    const box =
+    document.getElementById("queueBox");
+
+    box.innerHTML = "";
+
+    for(let i = 0; i < queue.length; i++){
+
+        box.innerHTML += `
+            <div class="queue-item">
+                ${queue[i]}
+            </div>
+        `;
+    }
+}
+
+function enqueue(){
+
+    const input =
+    document.getElementById("queueInput");
+
+    const value = input.value;
+
+    if(value === "") return;
+
+    queue.push(value);
+
+    input.value = "";
+
+    renderQueue();
+}
+
+function dequeue(){
+
+    if(queue.length > 0){
+
+        queue.shift();
+
+        renderQueue();
+    }
+}
+
+renderQueue();
+
+</script>
+
+</body>
+</html>

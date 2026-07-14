@@ -1,0 +1,313 @@
+[
+  {
+    "topic": "stack",
+    "difficulty": "hard",
+    "questions": [
+      {
+        "type": "written",
+        "question": "Design a Min Stack with O(1) time complexity.",
+        "hint": "Track minimum separately."
+      },
+      {
+        "type": "written",
+        "question": "Explain Largest Rectangle in Histogram using Stack.",
+        "hint": "Monotonic stack."
+      },
+      {
+        "type": "mcq",
+        "question": "Which approach is used in Trapping Rain Water (Stack method)?",
+        "options": [
+          "Greedy",
+          "Monotonic Stack",
+          "Binary Search",
+          "Heap"
+        ],
+        "correct_answer": "Monotonic Stack",
+        "hint": "Increasing/decreasing pattern."
+      },
+      {
+        "type": "written",
+        "question": "How would you implement a Stack supporting getMin() in O(1)?",
+        "hint": "Extra tracking structure."
+      },
+      {
+        "type": "written",
+        "question": "Explain Daily Temperatures problem using Stack.",
+        "hint": "Next greater element idea."
+      },
+      {
+        "type": "mcq",
+        "question": "Sliding Window Maximum can be solved using?",
+        "options": [
+          "Queue",
+          "Monotonic Stack",
+          "Heap only",
+          "Graph"
+        ],
+        "correct_answer": "Monotonic Stack",
+        "hint": "Think optimized comparison."
+      },
+      {
+        "type": "written",
+        "question": "Explain Longest Valid Parentheses problem.",
+        "hint": "Store indexes."
+      },
+      {
+        "type": "written",
+        "question": "How does expression evaluation with multiple operators use Stack?",
+        "hint": "Operands + precedence."
+      },
+      {
+        "type": "mcq",
+        "question": "Which problem commonly uses Stack in parsing?",
+        "options": [
+          "Compilers",
+          "Sorting",
+          "Networking",
+          "Hashing"
+        ],
+        "correct_answer": "Compilers",
+        "hint": "Syntax checking."
+      },
+      {
+        "type": "written",
+        "question": "Explain Sum of Subarray Minimums using Stack.",
+        "hint": "Monotonic stack logic."
+      }
+    ]
+  },
+
+  {
+    "topic": "queue",
+    "difficulty": "hard",
+    "questions": [
+      {
+        "type": "written",
+        "question": "Design a Queue using two Stacks.",
+        "hint": "Reverse order."
+      },
+      {
+        "type": "written",
+        "question": "Explain LRU Cache implementation using Queue logic.",
+        "hint": "Recent access."
+      },
+      {
+        "type": "mcq",
+        "question": "Which Queue type is used in Dijkstra’s Algorithm?",
+        "options": [
+          "Circular Queue",
+          "Priority Queue",
+          "Deque",
+          "Simple Queue"
+        ],
+        "correct_answer": "Priority Queue",
+        "hint": "Minimum distance first."
+      },
+      {
+        "type": "written",
+        "question": "Explain Priority Queue in real-world systems.",
+        "hint": "Importance ordering."
+      },
+      {
+        "type": "written",
+        "question": "How does Queue help in graph shortest path problems?",
+        "hint": "BFS."
+      },
+      {
+        "type": "mcq",
+        "question": "Deque supports insertion?",
+        "options": [
+          "Front only",
+          "Rear only",
+          "Both ends",
+          "Neither"
+        ],
+        "correct_answer": "Both ends",
+        "hint": "Double ended."
+      },
+      {
+        "type": "written",
+        "question": "Difference between Circular Queue and Deque.",
+        "hint": "Flexibility."
+      },
+      {
+        "type": "written",
+        "question": "Explain Queue optimization in task scheduling.",
+        "hint": "Processing order."
+      },
+      {
+        "type": "mcq",
+        "question": "Which traversal strongly depends on Queue?",
+        "options": [
+          "DFS",
+          "Inorder",
+          "BFS",
+          "Postorder"
+        ],
+        "correct_answer": "BFS",
+        "hint": "Level-wise."
+      },
+      {
+        "type": "written",
+        "question": "How would you implement a dynamic Queue?",
+        "hint": "Resizable memory."
+      }
+    ]
+  },
+
+  {
+    "topic": "linkedlist",
+    "difficulty": "hard",
+    "questions": [
+      {
+        "type": "written",
+        "question": "Clone a Linked List with random pointers.",
+        "hint": "Extra mapping."
+      },
+      {
+        "type": "written",
+        "question": "Explain LRU Cache using Linked List.",
+        "hint": "Doubly linked list."
+      },
+      {
+        "type": "mcq",
+        "question": "Which technique detects loop start?",
+        "options": [
+          "Binary Search",
+          "Floyd Cycle Detection",
+          "DFS",
+          "Heap"
+        ],
+        "correct_answer": "Floyd Cycle Detection",
+        "hint": "Fast + slow pointer."
+      },
+      {
+        "type": "written",
+        "question": "Merge K sorted linked lists.",
+        "hint": "Priority comparison."
+      },
+      {
+        "type": "written",
+        "question": "Flatten a multi-level linked list.",
+        "hint": "Recursive structure."
+      },
+      {
+        "type": "mcq",
+        "question": "Which Linked List best supports backtracking?",
+        "options": [
+          "Singly",
+          "Circular",
+          "Doubly",
+          "Linear"
+        ],
+        "correct_answer": "Doubly",
+        "hint": "Two directions."
+      },
+      {
+        "type": "written",
+        "question": "Reverse alternate K nodes in Linked List.",
+        "hint": "Group reversal."
+      },
+      {
+        "type": "written",
+        "question": "Explain finding intersection point of Linked Lists.",
+        "hint": "Pointer alignment."
+      },
+      {
+        "type": "mcq",
+        "question": "Linked List is preferred when?",
+        "options": [
+          "Fixed memory",
+          "Dynamic insertion",
+          "Fast indexing",
+          "Sorting only"
+        ],
+        "correct_answer": "Dynamic insertion",
+        "hint": "Flexible memory."
+      },
+      {
+        "type": "written",
+        "question": "Convert Binary Tree to Doubly Linked List.",
+        "hint": "Traversal order."
+      }
+    ]
+  },
+
+  {
+    "topic": "tree",
+    "difficulty": "hard",
+    "questions": [
+      {
+        "type": "written",
+        "question": "Serialize and Deserialize Binary Tree.",
+        "hint": "Traversal + null markers."
+      },
+      {
+        "type": "written",
+        "question": "Explain Binary Tree Maximum Path Sum.",
+        "hint": "Maximum contribution."
+      },
+      {
+        "type": "mcq",
+        "question": "Which traversal helps serialize trees?",
+        "options": [
+          "Preorder",
+          "Postorder",
+          "Only BFS",
+          "Sorting"
+        ],
+        "correct_answer": "Preorder",
+        "hint": "Null nodes."
+      },
+      {
+        "type": "written",
+        "question": "Recover a swapped Binary Search Tree.",
+        "hint": "Inorder issue."
+      },
+      {
+        "type": "written",
+        "question": "Explain Maximum Width of Binary Tree.",
+        "hint": "Level spacing."
+      },
+      {
+        "type": "mcq",
+        "question": "LCA mainly finds?",
+        "options": [
+          "Shortest path",
+          "Closest common parent",
+          "Leaf node",
+          "Maximum node"
+        ],
+        "correct_answer": "Closest common parent",
+        "hint": "Ancestor."
+      },
+      {
+        "type": "written",
+        "question": "How do Binary Tree Cameras problem work?",
+        "hint": "Coverage optimization."
+      },
+      {
+        "type": "written",
+        "question": "Explain Burn Binary Tree problem.",
+        "hint": "Time propagation."
+      },
+      {
+        "type": "mcq",
+        "question": "Balanced BST improves?",
+        "options": [
+          "Traversal",
+          "Search efficiency",
+          "Memory only",
+          "Printing"
+        ],
+        "correct_answer": "Search efficiency",
+        "hint": "Logarithmic search."
+      },
+      {
+        "type": "written",
+        "question": "Convert BST to Balanced BST.",
+        "hint": "Sorted inorder."
+      }
+    ]
+  }
+]

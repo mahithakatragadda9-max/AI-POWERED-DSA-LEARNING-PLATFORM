@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Linked List Visualizer</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="practice-page">
+
+    <h1 class="practice-title">
+        Linked List Visualizer
+    </h1>
+
+    <p class="practice-subtitle">
+        Learn Insert & Delete operations
+    </p>
+
+    <!-- INSERT -->
+    <div class="operation-card">
+
+        <h2>Insert Node</h2>
+
+        <p>
+            Insert adds a node at the END of the linked list.
+        </p>
+
+        <div class="op-controls">
+
+            <input
+            type="number"
+            id="llInput"
+            class="visual-input"
+            placeholder="Enter value">
+
+            <button class="visual-btn"
+            onclick="insertNode()">
+                Insert
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- DELETE -->
+    <div class="operation-card">
+
+        <h2>Delete Node</h2>
+
+        <p>
+            Delete removes the LAST node from the list.
+        </p>
+
+        <div class="op-controls">
+
+            <button class="visual-btn"
+            onclick="deleteNode()">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- VISUAL -->
+    <div id="llBox"
+    class="ll-box-container">
+
+    </div>
+
+</div>
+
+
+<script>
+
+let list = [10, 20, 30];
+
+function renderList(){
+
+    const box =
+    document.getElementById("llBox");
+
+    box.innerHTML = "";
+
+    for(let i = 0; i < list.length; i++){
+
+        box.innerHTML += `
+            <div class="ll-node">
+                ${list[i]}
+            </div>
+            <div class="arrow">→</div>
+        `;
+    }
+}
+
+function insertNode(){
+
+    const input =
+    document.getElementById("llInput");
+
+    const value = input.value;
+
+    if(value === "") return;
+
+    list.push(value);
+
+    input.value = "";
+
+    renderList();
+}
+
+function deleteNode(){
+
+    if(list.length > 0){
+
+        list.pop();
+
+        renderList();
+    }
+}
+
+renderList();
+
+</script>
+
+</body>
+</html>

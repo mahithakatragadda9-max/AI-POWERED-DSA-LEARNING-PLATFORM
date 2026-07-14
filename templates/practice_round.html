@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practice Round</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="practice-page">
+
+    <h1>Technical Practice</h1>
+
+    <p>
+        Question {{ question_number }}/10
+    </p>
+    <div class="question-meta">
+
+    <p>
+        <strong>Topic:</strong>
+        {{ question.topic }}
+    </p>
+
+    <p>
+        <strong>Mode:</strong>
+        {{ session["mode"] }}
+    </p>
+    {%if session["mode"]=="adaptive" %}
+
+    <p>
+
+        <strong>Level:</strong>
+        {{ question.difficulty }}
+    </p>
+    {%endif%}
+
+</div>
+
+    <div class="answer-card">
+
+       
+
+        <h2 id="questionText">
+            {{ question.question }}
+        </h2>
+
+        <!-- MCQ -->
+        {% if question.type == "mcq" %}
+
+        <form id="practiceForm" method="post" action="/practice_round">
+
+            {% for option in question.options %}
+
+            <label
+            style="
+            display:block;
+            margin:12px 0;
+            ">
+
+                <input
+                    type="radio"
+                    name="answer"
+                    value="{{ option }}"
+                    required
+                >
+
+                {{ option }}
+
+            </label>
+
+            {% endfor %}
+
+            <button
+            type="button"
+            onclick="showHint()">
+
+                Show Hint
+
+            </button>
+
+            <p
+            id="hintBox"
+            style="display:none;">
+
+                💡 {{ question.hint }}
+
+            </p>
+
+            <br><br>
+
+            <button
+            type="button"
+            onclick="submitAnswer()">
+
+                Submit Answer
+
+            </button>
+
+        </form>
+
+        {% endif %}
+
+        <!-- WRITTEN -->
+        {% if question.type == "written" %}
+
+        <form id="practiceForm" method="POST" action="/practice_round">
+
+            <textarea
+                id="writtenAnswer"
+                name="answer"
+                rows="6"
+                placeholder="Write answer..."
+                required
+                style="
+                width:100%;
+                padding:15px;
+                border-radius:12px;
+                ">
+            </textarea>
+
+            <br><br>
+
+            <button
+            type="button"
+            onclick="showHint()">
+
+                Show Hint
+
+            </button>
+
+            <p
+            id="hintBox"
+            style="display:none;">
+
+                💡 {{ question.hint }}
+
+            </p>
+
+            <br><br>
+
+            <button
+            type="button"
+            onclick="submitAnswer()">
+
+                Submit Answer
+
+            </button>
+
+        </form>
+
+        {% endif %}
+
+        <!-- FEEDBACK -->
+        <div
+        id="feedbackBox"
+        style="
+        display:none;
+        margin-top:25px;
+        background:#1e293b;
+        padding:20px;
+        border-radius:15px;
+        ">
+
+            <h3>Result</h3>
+
+            <div id="feedbackContent"
+style="
+line-height:1.8;
+white-space:pre-line;
+word-wrap:break-word;
+overflow-wrap:break-word;
+max-width:100%;
+font-size:16px;
+color:#e2e8f0;
+">
+</div>
+            <br>
+
+            <button
+            onclick="nextQuestion()">
+
+                Next Question
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function showHint(){
+
+    document
+    .getElementById(
+    "hintBox"
+    )
+    .style.display =
+    "block";
+}
+function submitAnswer() {
+
+    const form = document.getElementById("practiceForm");
+
+    // ensure form method is POST
+    form.method = "POST";
+    form.action = "/practice_round";
+
+    // IMPORTANT: remove any previous dynamic GET behavior
+    // just submit form directly
+    form.submit();
+}
+
+function nextQuestion(){
+
+    const form =
+    document.createElement(
+    "form"
+    );
+
+    form.method =
+    "POST";
+
+    // IMPORTANT FIX
+    const input =
+    document.createElement(
+    "input"
+    );
+
+    input.type =
+    "hidden";
+
+    input.name =
+    "next_question";
+
+    input.value =
+    "1";
+
+    form.appendChild(
+    input
+    );
+
+    document.body
+    .appendChild(
+    form
+    );
+
+    form.submit();
+}
+
+</script>
+
+</body>
+</html>

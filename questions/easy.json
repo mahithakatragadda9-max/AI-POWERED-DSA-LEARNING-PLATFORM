@@ -1,0 +1,331 @@
+[
+  {
+    "topic": "stack",
+    "difficulty": "easy",
+    "questions": [
+      {
+        "type": "mcq",
+        "question": "What principle does Stack follow?",
+        "options": ["FIFO", "LIFO", "LILO", "FILO"],
+        "correct_answer": "LIFO",
+        "hint": "Think about plates stacked."
+      },
+      {
+        "type": "written",
+        "question": "Explain how Stack works with a real-life example.",
+        "hint": "Think of plates."
+      },
+      {
+        "type": "mcq",
+        "question": "Which operation adds element to Stack?",
+        "options": ["Pop", "Push", "Peek", "Delete"],
+        "correct_answer": "Push",
+        "hint": "Insertion operation."
+      },
+      {
+        "type": "mcq",
+        "question": "Which operation removes top element from Stack?",
+        "options": ["Push", "Peek", "Pop", "Insert"],
+        "correct_answer": "Pop",
+        "hint": "Removal operation."
+      },
+      {
+        "type": "written",
+        "question": "Difference between Stack and Queue.",
+        "hint": "LIFO vs FIFO."
+      },
+      {
+        "type": "mcq",
+        "question": "What is Stack Overflow?",
+        "options": [
+          "Deleting element",
+          "Adding element to full stack",
+          "Viewing top element",
+          "Empty stack"
+        ],
+        "correct_answer": "Adding element to full stack",
+        "hint": "Memory limit reached."
+      },
+      {
+        "type": "mcq",
+        "question": "Which function is used to see top element?",
+        "options": ["Peek", "Push", "Pop", "Front"],
+        "correct_answer": "Peek",
+        "hint": "Only view, not remove."
+      },
+      {
+        "type": "written",
+        "question": "Where is Stack used in real life?",
+        "hint": "Browser back button."
+      },
+      {
+        "type": "mcq",
+        "question": "Stack insertion and deletion happen at?",
+        "options": ["Front", "Middle", "Top", "Bottom"],
+        "correct_answer": "Top",
+        "hint": "Single end."
+      },
+      {
+        "type": "mcq",
+        "question": "Which data structure is used for recursion?",
+        "options": ["Queue", "Stack", "Tree", "Graph"],
+        "correct_answer": "Stack",
+        "hint": "Function calls."
+      }
+    ]
+  },
+
+  {
+    "topic": "queue",
+    "difficulty": "easy",
+    "questions": [
+      {
+        "type": "mcq",
+        "question": "Queue follows which principle?",
+        "options": ["LIFO", "FIFO", "FILO", "LILO"],
+        "correct_answer": "FIFO",
+        "hint": "Waiting line."
+      },
+      {
+        "type": "written",
+        "question": "Explain Queue with real-life example.",
+        "hint": "People waiting."
+      },
+      {
+        "type": "mcq",
+        "question": "Which operation inserts element in Queue?",
+        "options": ["Push", "Enqueue", "Pop", "Peek"],
+        "correct_answer": "Enqueue",
+        "hint": "Add operation."
+      },
+      {
+        "type": "mcq",
+        "question": "Which operation removes element in Queue?",
+        "options": ["Push", "Pop", "Enqueue", "Dequeue"],
+        "correct_answer": "Dequeue",
+        "hint": "Remove operation."
+      },
+      {
+        "type": "written",
+        "question": "Difference between Stack and Queue.",
+        "hint": "Order matters."
+      },
+      {
+        "type": "mcq",
+        "question": "Front element of queue is removed by?",
+        "options": ["Enqueue", "Peek", "Dequeue", "Push"],
+        "correct_answer": "Dequeue",
+        "hint": "Removal."
+      },
+      {
+        "type": "mcq",
+        "question": "Queue is commonly used in?",
+        "options": [
+          "Browser history",
+          "Job scheduling",
+          "Undo feature",
+          "Recursion"
+        ],
+        "correct_answer": "Job scheduling",
+        "hint": "Tasks waiting."
+      },
+      {
+        "type": "written",
+        "question": "Why is Queue useful in scheduling systems?",
+        "hint": "First come first serve."
+      },
+      {
+        "type": "mcq",
+        "question": "Queue insertion happens at?",
+        "options": ["Front", "Rear", "Middle", "Top"],
+        "correct_answer": "Rear",
+        "hint": "End side."
+      },
+      {
+        "type": "mcq",
+        "question": "Queue deletion happens at?",
+        "options": ["Rear", "Front", "Middle", "Top"],
+        "correct_answer": "Front",
+        "hint": "Starting side."
+      }
+    ]
+  },
+
+  {
+    "topic": "linkedlist",
+    "difficulty": "easy",
+    "questions": [
+      {
+        "type": "mcq",
+        "question": "Linked List stores data in?",
+        "options": [
+          "Contiguous memory",
+          "Nodes",
+          "Arrays",
+          "Matrix"
+        ],
+        "correct_answer": "Nodes",
+        "hint": "Connected structure."
+      },
+      {
+        "type": "written",
+        "question": "What is Linked List?",
+        "hint": "Think nodes + pointers."
+      },
+      {
+        "type": "mcq",
+        "question": "What connects nodes in Linked List?",
+        "options": ["Index", "Pointer", "Loop", "Stack"],
+        "correct_answer": "Pointer",
+        "hint": "Address reference."
+      },
+      {
+        "type": "written",
+        "question": "Difference between Array and Linked List.",
+        "hint": "Memory allocation."
+      },
+      {
+        "type": "mcq",
+        "question": "Which Linked List has previous pointer?",
+        "options": [
+          "Singly",
+          "Circular",
+          "Doubly",
+          "Linear"
+        ],
+        "correct_answer": "Doubly",
+        "hint": "Backward move."
+      },
+      {
+        "type": "mcq",
+        "question": "Insertion at beginning of Linked List is?",
+        "options": ["Slow", "Fast", "Impossible", "Complex"],
+        "correct_answer": "Fast",
+        "hint": "O(1)"
+      },
+      {
+        "type": "written",
+        "question": "Explain singly vs doubly linked list.",
+        "hint": "One pointer vs two."
+      },
+      {
+        "type": "mcq",
+        "question": "Which Linked List connects last node to first?",
+        "options": [
+          "Doubly",
+          "Singly",
+          "Circular",
+          "Binary"
+        ],
+        "correct_answer": "Circular",
+        "hint": "Forms loop."
+      },
+      {
+        "type": "written",
+        "question": "Where can Linked Lists be used?",
+        "hint": "Dynamic memory."
+      },
+      {
+        "type": "mcq",
+        "question": "Linked List is best when?",
+        "options": [
+          "Fixed size",
+          "Frequent insertion/deletion",
+          "Fast indexing",
+          "Sorting only"
+        ],
+        "correct_answer": "Frequent insertion/deletion",
+        "hint": "Dynamic operations."
+      }
+    ]
+  },
+
+  {
+    "topic": "tree",
+    "difficulty": "easy",
+    "questions": [
+      {
+        "type": "mcq",
+        "question": "Binary Tree node can have maximum?",
+        "options": [
+          "1 child",
+          "2 children",
+          "3 children",
+          "Unlimited"
+        ],
+        "correct_answer": "2 children",
+        "hint": "Binary means?"
+      },
+      {
+        "type": "written",
+        "question": "Explain Binary Tree with example.",
+        "hint": "Parent-child nodes."
+      },
+      {
+        "type": "mcq",
+        "question": "Topmost node in tree is called?",
+        "options": ["Leaf", "Child", "Root", "Branch"],
+        "correct_answer": "Root",
+        "hint": "Starting node."
+      },
+      {
+        "type": "mcq",
+        "question": "Node without child is called?",
+        "options": ["Root", "Leaf", "Parent", "Subtree"],
+        "correct_answer": "Leaf",
+        "hint": "Ending node."
+      },
+      {
+        "type": "written",
+        "question": "Explain inorder traversal.",
+        "hint": "Left → Root → Right"
+      },
+      {
+        "type": "mcq",
+        "question": "Which traversal visits root first?",
+        "options": [
+          "Inorder",
+          "Preorder",
+          "Postorder",
+          "Level Order"
+        ],
+        "correct_answer": "Preorder",
+        "hint": "Root comes first."
+      },
+      {
+        "type": "written",
+        "question": "Difference between DFS and BFS in Tree.",
+        "hint": "Depth vs level."
+      },
+      {
+        "type": "mcq",
+        "question": "Which traversal uses queue?",
+        "options": [
+          "DFS",
+          "Level Order",
+          "Preorder",
+          "Postorder"
+        ],
+        "correct_answer": "Level Order",
+        "hint": "Breadth First."
+      },
+      {
+        "type": "written",
+        "question": "Where are Trees used in real life?",
+        "hint": "Folder structure."
+      },
+      {
+        "type": "mcq",
+        "question": "Height of tree means?",
+        "options": [
+          "Total nodes",
+          "Longest path",
+          "Leaf count",
+          "Children count"
+        ],
+        "correct_answer": "Longest path",
+        "hint": "Root to deepest node."
+      }
+    ]
+  }
+]

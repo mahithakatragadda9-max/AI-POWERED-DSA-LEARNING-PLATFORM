@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Technical Practice</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="tech-practice-container">
+
+    <div class="tech-practice-card">
+
+        <h1 class="tech-practice-title">
+            Technical Practice
+        </h1>
+
+        <p class="tech-practice-subtitle">
+            Practice DSA interview questions
+        </p>
+
+        <form
+        method="POST"
+        action="/start_practice">
+
+            <h2 class="section-title">
+                Practice Type
+            </h2>
+
+            <div class="option-grid">
+
+                <div class="option-card">
+
+                    <label>
+
+                        <input
+                        type="radio"
+                        name="practice_type"
+                        value="topic"
+                        required
+                        onclick="showTopic()">
+
+                        Topic Wise
+
+                    </label>
+
+                </div>
+
+                <div class="option-card">
+
+                    <label>
+
+                        <input
+                        type="radio"
+                        name="practice_type"
+                        value="mixed"
+                        onclick="hideTopic()">
+
+                        Mixed Practice
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div id="topicBox">
+
+                <h2 class="section-title">
+                    Choose Topic
+                </h2>
+
+                <select
+                name="topic"
+                class="practice-select">
+
+                    <option value="stack">
+                        Stack
+                    </option>
+
+                    <option value="queue">
+                        Queue
+                    </option>
+
+                    <option value="linkedlist">
+                        Linked List
+                    </option>
+
+                    <option value="tree">
+                        Tree
+                    </option>
+
+                </select>
+
+            </div>
+
+            <h2 class="section-title">
+                Choose Mode
+            </h2>
+
+            <select
+            name="mode"
+            class="practice-select"
+            required>
+
+                <option value="easy">
+                    Easy
+                </option>
+
+                <option value="medium">
+                    Medium
+                </option>
+
+                <option value="hard">
+                    Hard
+                </option>
+
+                <option value="adaptive">
+                    Adaptive
+                </option>
+
+            </select>
+
+            <button
+            type="submit"
+            class="tech-practice-btn">
+
+                Start Practice
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+function hideTopic(){
+
+document
+.getElementById(
+"topicBox"
+).style.display =
+"none";
+}
+
+function showTopic(){
+
+document
+.getElementById(
+"topicBox"
+).style.display =
+"block";
+}
+
+</script>
+
+</body>
+</html>

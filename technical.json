@@ -1,0 +1,270 @@
+  {
+  "metadata": {
+    "title": "DSA Reference",
+    "version": "1.0",
+    "description": "Comprehensive Data Structures and Algorithms reference for local AI lookup. Includes topics, short descriptions, operations, typical complexity, and subtopics.",
+    "generated_on": "2026-06-23"
+  },
+  "basics": {
+    "introduction": {
+      "description": "What DSA is, importance, and where it applies (software, databases, networking, AI, OS).",
+      "notes": [
+        "DSA provides efficient ways to store, access, and manipulate data in software systems and algorithms; widely used across software development, databases, networking, AI and systems design." 
+      ]
+    },
+    "complexity_analysis": {
+      "description": "Time and space complexity, Big O / Theta / Omega, best/average/worst-case.",
+      "subtopics": [
+        "Asymptotic notation (Big O, Theta, Omega)",
+        "Time complexity: best/average/worst-case",
+        "Space complexity",
+        "Amortized analysis",
+        "Recurrence relations and Master theorem"
+      ]
+    }
+  },
+  "data_structures": {
+    "arrays": {
+      "description": "Contiguous indexed collection; supports random access and efficient iteration.",
+      "operations": {
+        "access": "O(1)",
+        "search": "O(n)",
+        "insert_end": "O(1) amortized",
+        "insert_middle": "O(n)",
+        "delete": "O(n)"
+      },
+      "subtopics": [
+        "dynamic arrays (resizing)",
+        "multi-dimensional arrays",
+        "sparse arrays"
+      ],
+      "notes": "Used for static lists, buffers, and as building blocks for other DS."
+    },
+    "linked_lists": {
+      "description": "Nodes linked by pointers; supports efficient insertion/deletion at known nodes.",
+      "types": ["singly", "doubly", "circular"],
+      "operations": {
+        "traverse": "O(n)",
+        "insert_head": "O(1)",
+        "insert_tail": "O(1) with tail ptr",
+        "delete": "O(1) with pointer",
+        "search": "O(n)"
+      },
+      "use_cases": ["implementing stacks/queues", "adjacency lists"]
+    },
+    "stacks": {
+      "description": "LIFO structure, push/pop operations.",
+      "operations": {
+        "push": "O(1)",
+        "pop": "O(1)",
+        "peek": "O(1)"
+      },
+      "applications": ["expression evaluation", "DFS", "backtracking"]
+    },
+    "queues": {
+      "description": "FIFO structure.",
+      "variants": ["simple queue", "circular queue", "priority queue", "double-ended deque"],
+      "operations": {
+        "enqueue": "O(1)",
+        "dequeue": "O(1)",
+        "peek": "O(1)"
+      },
+      "notes": "Priority queue uses heap internally for efficient min/max extraction."
+    },
+    "heaps": {
+      "description": "Binary heap is a tree-based priority queue supporting extract-min/max.",
+      "types": ["min-heap", "max-heap", " fibonacci heap (advanced)"],
+      "operations": {
+        "insert": "O(log n)",
+        "extract": "O(log n)",
+        "peek": "O(1)",
+        "build_heap": "O(n)"
+      },
+      "use_cases": ["priority queues", "heap-sort", "k-smallest problems"]
+    },
+    "hash_tables": {
+      "description": "Associative array mapping keys to values using hash functions.",
+      "operations": {
+        "insert": "O(1) average",
+        "lookup": "O(1) average",
+        "delete": "O(1) average"
+      },
+      "collision_resolution": ["chaining", "open addressing (linear probing, quadratic probing)"],
+      "notes": "Performance depends on load factor and hash quality."
+    },
+    "tries": {
+      "description": "Prefix tree for strings enabling efficient prefix queries.",
+      "operations": {
+        "insert": "O(L)",
+        "search": "O(L)",
+        "delete": "O(L)"
+      },
+      "use_cases": ["autocomplete", "dictionary", "IP routing (prefix matches)"]
+    },
+    "trees": {
+      "description": "Hierarchical data structure; binary trees are most common.",
+      "common_types": [
+        "binary tree",
+        "binary search tree (BST)",
+        "balanced BSTs (AVL, Red-Black)",
+        "B-tree / B+ tree",
+        "segment tree",
+        "interval tree",
+        "suffix tree"
+      ],
+      "operations": {
+        "search_bst": "O(h) where h is height",
+        "insert": "O(h)",
+        "delete": "O(h)",
+        "traversals": "preorder/inorder/postorder (O(n))"
+      },
+      "notes": "Balanced trees maintain O(log n) height; used in databases and indexes."
+    },
+    "graphs": {
+      "description": "Nodes (vertices) connected by edges; used to model networks.",
+      "representations": ["adjacency list", "adjacency matrix", "edge list"],
+      "traversals": {
+        "bfs": "O(V+E)",
+        "dfs": "O(V+E)"
+      },
+      "algorithms": [
+        "single-source shortest path (Dijkstra, Bellman-Ford)",
+        "all-pairs (Floyd-Warshall)",
+        "minimum spanning tree (Kruskal, Prim)",
+        "topological sort",
+        "strongly connected components (Kosaraju, Tarjan)",
+        "max flow (Edmonds-Karp, Dinic)"
+      ],
+      "notes": "Choose representation by density; adjacency list for sparse graphs."
+    },
+    "disjoint_set_union": {
+      "description": "Union-Find structure for maintaining disjoint sets.",
+      "operations": {
+        "find": "near O(1) amortized with path compression",
+        "union": "near O(1) amortized with union by rank"
+      },
+      "use_cases": ["Kruskal MST", "connectivity queries"]
+    },
+    "advanced_structures": {
+      "segment_tree": {
+        "description": "Range query and update structure over arrays.",
+        "operations": {
+          "build": "O(n)",
+          "query": "O(log n)",
+          "update": "O(log n)"
+        },
+        "variants": ["lazy propagation", "persistent segment tree"]
+      },
+      "fenwick_tree": {
+        "description": "Binary Indexed Tree for prefix sums and updates.",
+        "operations": {
+          "update": "O(log n)",
+          "query_prefix": "O(log n)"
+        }
+      },
+      "suffix_array_tree": {
+        "description": "Suffix arrays / trees for string queries.",
+        "use_cases": ["pattern matching", "longest repeated substring"]
+      }
+    }
+  },
+  "algorithms": {
+    "searching": {
+      "linear_search": {
+        "description": "Scan elements sequentially.",
+        "complexity": "O(n)"
+      },
+      "binary_search": {
+        "description": "Divide-and-conquer on sorted arrays.",
+        "complexity": "O(log n)",
+        "notes": "Requires random access; useful for order statistics and pivot finding."
+      }
+    },
+    "sorting": {
+      "bubble_sort": {"complexity": "O(n^2)", "notes": "educational"},
+      "selection_sort": {"complexity": "O(n^2)"},
+      "insertion_sort": {"complexity": "O(n^2)", "notes": "adaptive for nearly-sorted arrays"},
+      "merge_sort": {"complexity": "O(n log n)", "space": "O(n)"},
+      "quick_sort": {"complexity": "O(n log n) average, O(n^2) worst", "notes": "in-place average fast"},
+      "heap_sort": {"complexity": "O(n log n)", "notes": "in-place, not stable"}
+    },
+    "divide_and_conquer": {
+      "description": "Split problem, solve subproblems, combine results.",
+      "examples": ["merge sort", "quick sort", "binary search"]
+    },
+    "greedy_algorithms": {
+      "description": "Make locally optimal choices aiming for global optimum.",
+      "examples": ["activity selection", "coin change (canonical)", "Kruskal", "Prim"]
+    },
+    "dynamic_programming": {
+      "description": "Store overlapping subproblem results to avoid recomputation.",
+      "approaches": ["top-down (memoization)", "bottom-up (tabulation)"],
+      "examples": ["knapsack", "longest common subsequence", "matrix chain multiplication"]
+    },
+    "backtracking": {
+      "description": "Depth-first search with constraint pruning.",
+      "examples": ["n-queens", "sudoku", "subset sum", "permutations"]
+    },
+    "graph_algorithms": {
+      "bfs": {"use_cases": "shortest path on unweighted graphs, level order"},
+      "dfs": {"use_cases": "topological sort, SCC, cycle detection"},
+      "dijkstra": {"complexity": "O(E + V log V) with heap"},
+      "bellman_ford": {"use_cases": "graphs with negative edges", "complexity": "O(VE)"}
+    },
+    "string_algorithms": {
+      "kmp": {"description": "Knuth-Morris-Pratt pattern search; O(n+m)"},
+      "rabinkarp": {"description": "Rolling-hash based search"},
+      "z_algorithm": {"description": "Pattern matching and prefix function"},
+      "suffix_array": {"description": "Suffix-based pattern ops"}
+    },
+    "number_theory": {
+      "gcd_lcm": {"description": "Euclid's algorithm for GCD"},
+      "primes": {"sieve": "Sieve of Eratosthenes", "complexity": "O(n log log n)"},
+      "modular_arithmetic": {"notes": "mod inverse, fast exponentiation"}
+    },
+    "bit_manipulation": {
+      "description": "Use bitwise operators for constant-space optimizations.",
+      "common_tricks": ["bitmask DP", "count set bits", "lowest set bit", "xor properties"]
+    },
+    "approximation_and_optimization": {
+      "greedy_approx": {"description": "Approximation via greedy for NP-hard problems"},
+      "heuristics": {"notes": "local search, simulated annealing (where applicable)"}
+    }
+  },
+  "problem_patterns": {
+    "two_pointers": {"description": "Scan with two indices; used for sorted arrays and substring problems."},
+    "sliding_window": {"description": "Maintain window with properties (sum, frequency) for linear scans."},
+    "binary_search_on_answer": {"description": "Binary search over a monotonic answer space."},
+    "dfs_backtracking": {"description": "Use recursion and pruning for combinatorial search."},
+    "dp_states_design": {"description": "Define state and transitions; optimize with memoization or tabulation."},
+    "graph_modeling": {"description": "Model real problems as graphs (nodes, edges) to apply graph algorithms."}
+  },
+  "advanced_topics": {
+    "computational_complexity": {
+      "description": "P vs NP, NP-completeness, reductions, hardness.",
+      "examples": ["SAT, subset-sum, traveling salesman (decision variant)"]
+    },
+    "parallel_and_external_algo": {
+      "description": "Algorithms for parallel systems and external memory models.",
+      "notes": ["map-reduce patterns", "external sorting"]
+    },
+    "randomized_algorithms": {
+      "description": "Algorithms using randomness for simplicity or speed (e.g., QuickSort pivoting variants, randomized hashing)."
+    }
+  },
+  "interview_topics": {
+    "common_questions": [
+      "array & two-pointer pattern problems",
+      "string manipulation & hashing",
+      "sliding window & frequency counting",
+      "tree traversals & tree DP",
+      "graph shortest path & connectivity",
+      "dynamic programming classic problems"
+    ],
+    "hints": "Start with clarifying constraints, choose data structure, analyze complexity, optimize memory/time tradeoffs."
+  },
+  "format_guidelines": {
+    "how_to_extend": "Add fields 'links', 'code_examples', 'difficulty' (easy/med/hard), 'tags' for each topic.",
+    "lookup_strategy": "Chatbox should search by 'topic', 'subtopic', and 'tags' fields, and fall back to 'description' full-text matches."
+  }
+  }

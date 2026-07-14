@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Binary Tree Visualizer</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="practice-page">
+
+    <h1 class="practice-title">
+        Binary Tree Visualizer
+    </h1>
+
+    <p class="practice-subtitle">
+        Insert → Builds Level Order Tree (with connections)
+    </p>
+
+    <!-- CONTROLS -->
+    <div class="operation-card">
+
+        <h2>Tree Operations</h2>
+
+        <div class="op-controls">
+
+            <input type="number"
+            id="treeInput"
+            class="visual-input"
+            placeholder="Enter value">
+
+            <button class="visual-btn"
+            onclick="insertNode()">
+                Insert
+            </button>
+
+            <button class="visual-btn"
+            onclick="deleteNode()">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- TREE AREA -->
+    <div id="treeBox" class="tree-box"></div>
+
+</div>
+
+
+<script>
+
+let tree = [];
+
+function insertNode(){
+
+    let val = document.getElementById("treeInput").value;
+    if(val === "") return;
+
+    tree.push(val);
+
+    document.getElementById("treeInput").value = "";
+
+    renderTree();
+}
+
+function deleteNode(){
+
+    if(tree.length > 0){
+        tree.pop();
+        renderTree();
+    }
+}
+
+function renderTree(){
+
+    let box = document.getElementById("treeBox");
+    box.innerHTML = "";
+
+    let positions = [];
+
+    let startX = window.innerWidth / 2;
+    let startY = 40;
+
+    let gapX = 120;
+    let gapY = 90;
+
+    // CREATE NODES
+    for(let i = 0; i < tree.length; i++){
+
+        let level = Math.floor(Math.log2(i + 1));
+        let indexInLevel = i - (Math.pow(2, level) - 1);
+
+        let x = startX + (indexInLevel - Math.pow(2, level - 1)) * gapX;
+        let y = startY + level * gapY;
+
+        let node = document.createElement("div");
+        node.className = "tree-node";
+        node.innerText = tree[i];
+
+        node.style.left = x + "px";
+        node.style.top = y + "px";
+
+        box.appendChild(node);
+
+        positions[i] = {x, y};
+    }
+
+    // DRAW LINES
+    for(let i = 0; i < tree.length; i++){
+
+        let left = 2 * i + 1;
+        let right = 2 * i + 2;
+
+        if(left < tree.length){
+            drawLine(positions[i], positions[left]);
+        }
+
+        if(right < tree.length){
+            drawLine(positions[i], positions[right]);
+        }
+    }
+}
+
+function drawLine(p1, p2){
+
+    let line = document.createElement("div");
+    line.className = "tree-line";
+
+    let dx = p2.x - p1.x;
+    let dy = p2.y - p1.y;
+
+    let length = Math.sqrt(dx*dx + dy*dy);
+    let angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+    line.style.width = length + "px";
+    line.style.left = p1.x + "px";
+    line.style.top = p1.y + "px";
+    line.style.transform = `rotate(${angle}deg)`;
+
+    document.getElementById("treeBox").appendChild(line);
+}
+
+</script>
+
+</body>
+</html>

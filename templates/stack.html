@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Stack Visualizer</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="practice-page">
+
+    <h1 class="practice-title">
+        Stack Visualizer
+    </h1>
+
+    <p class="practice-subtitle">
+        Learn Push & Pop operations clearly
+    </p>
+
+    <!-- PUSH SECTION -->
+    <div class="operation-card">
+
+        <h2>Push Operation</h2>
+
+        <p>
+            Push adds an element to the TOP of the stack.
+        </p>
+
+        <div class="op-controls">
+
+            <input
+            class="visual-input"
+            type="number"
+            id="stackInput"
+            placeholder="Enter number">
+
+            <button class="visual-btn" onclick="pushStack()">
+                Push
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- POP SECTION -->
+    <div class="operation-card">
+
+        <h2>Pop Operation</h2>
+
+        <p>
+            Pop removes the TOP element from the stack.
+        </p>
+
+        <div class="op-controls">
+
+            <button class="visual-btn" onclick="popStack()">
+                Pop
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- STACK DISPLAY -->
+    <div id="stackBox"
+    class="stack-box-container">
+
+    </div>
+
+</div>
+
+
+<script>
+
+let stack = [10, 20, 30];
+
+function renderStack(){
+
+    const box =
+    document.getElementById("stackBox");
+
+    box.innerHTML = "";
+
+    for(let i = stack.length - 1; i >= 0; i--){
+
+        box.innerHTML += `
+            <div class="stack-item">
+                ${stack[i]}
+            </div>
+        `;
+    }
+}
+
+function pushStack(){
+
+    const input =
+    document.getElementById("stackInput");
+
+    const value = input.value;
+
+    if(value === "") return;
+
+    stack.push(value);
+
+    input.value = "";
+
+    renderStack();
+}
+
+function popStack(){
+
+    if(stack.length > 0){
+
+        stack.pop();
+
+        renderStack();
+    }
+}
+
+renderStack();
+
+</script>
+
+</body>
+</html>

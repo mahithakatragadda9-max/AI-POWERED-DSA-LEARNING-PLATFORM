@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most Repeated Questions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            background-color: #0f172a; 
+            color: #f8fafc; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            padding: 20px; 
+        }
+        .pyq-container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+        }
+        .view-heading { 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            color: #f59e0b; 
+            margin: 20px 0; 
+            border-bottom: 2px solid #334155; 
+            padding-bottom: 5px; 
+        }
+        .section-wrapper { 
+            margin-bottom: 12px; 
+            background: #1e293b; 
+            border: 1px solid #334155; 
+            border-radius: 10px; 
+            overflow: hidden; 
+        }
+        .section-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 16px 20px; 
+            cursor: pointer; 
+        }
+        .section-content { 
+            display: none; 
+            border-top: 1px solid #334155; 
+            background: rgba(15, 23, 42, 0.8); 
+        }
+        .section-wrapper.active .section-content { 
+            display: block; 
+        }
+        .q-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        .q-table th, .q-table td { 
+            padding: 12px 16px; 
+            text-align: left; 
+            border-bottom: 1px solid rgba(255,255,255,0.03); 
+        }
+        .q-table th {
+            background: rgba(0, 0, 0, 0.4);
+            color: #94a3b8;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+        .company-tag { 
+            background: rgba(255,255,255,0.05); 
+            color: #94a3b8; 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            margin-right: 4px; 
+            font-size: 0.8rem; 
+        }
+        .difficulty-badge { 
+            padding: 3px 8px; 
+            border-radius: 4px; 
+            font-size: 0.75rem; 
+            font-weight: bold; 
+        }
+        .difficulty-badge.easy { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .difficulty-badge.medium { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .difficulty-badge.hard { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+        .repeat-count { 
+            color: #f59e0b; 
+            font-weight: 600; 
+        }
+        .back-btn { 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            color: #3b82f6; 
+            text-decoration: none; 
+            font-weight: 500;
+        }
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="pyq-container">
+        <a href="/pyq" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to All PYQs</a>
+        
+        <div class="view-heading">
+            <i class="fa-solid fa-fire" style="color: #f59e0b;"></i> Most Repeated Company Questions
+        </div>
+        
+        <div id="topic-view">
+            {% for topic_name, topic_data in topics.items() %}
+            <div class="section-wrapper">
+                <div class="section-header" onclick="toggleAccordion(this)">
+                    <div>
+                        <div style="font-weight:600; font-size:1.1rem;">{{ topic_name }}</div>
+                        <div style="font-size:0.85rem; color:#94a3b8;">{{ topic_data.questions|length }} High-Frequency Questions</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down" style="color: #94a3b8;"></i>
+                </div>
+                <div class="section-content">
+                    <table class="q-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%; text-align: center;">Solved</th>
+                                <th style="width: 47%;">Question Title</th>
+                                <th style="width: 15%;">Difficulty</th>
+                                <th style="width: 20%;">Companies</th>
+                                <th style="width: 10%;">Repeated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for q in topic_data.questions %}
+                            <tr>
+                                <td style="text-align:center;">
+                                    <input type="checkbox" data-qid="{{ q.id }}" {% if q.solved %}checked{% endif %} onchange="updateProgress(this)">
+                                </td>
+                                <td>
+                                    <a href="{{ q.link }}" target="_blank" style="color:#f8fafc; text-decoration:none; font-weight:500;">{{ q.title }}</a>
+                                </td>
+                                <td>
+                                    <span class="difficulty-badge {{ q.difficulty|lower }}">{{ q.difficulty }}</span>
+                                </td>
+                                <td>
+                                    {% if q.companies is iterable and q.companies is not string %}
+                                        {% for comp in q.companies %}
+                                            <span class="company-tag">{{ comp }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="repeat-count">×{{ q.repeated if q.repeated else 1 }}</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(el) { 
+            el.closest('.section-wrapper').classList.toggle('active'); 
+        }
+        
+        function updateProgress(checkboxElement) {
+            fetch('/api/update-pyq-status', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    id: checkboxElement.getAttribute('data-qid'), 
+                    solved: checkboxElement.checked 
+                })
+            });
+        }
+    </script>
+</body>
+</html>

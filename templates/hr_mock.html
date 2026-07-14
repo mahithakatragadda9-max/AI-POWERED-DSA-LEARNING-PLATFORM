@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>HR Interview</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="practice-page">
+
+    <h1 class="practice-title">
+        HR Round
+    </h1>
+
+    <div class="operation-card">
+
+        <h2>Question</h2>
+
+        <p>
+    Introduce yourself in structured HR format:
+</p>
+
+<ul style="color:#cbd5e1; line-height:2;">
+    <li>Name + Background</li>
+    <li>Technical Skills</li>
+    <li>Your DSA Project</li>
+    <li>Career Goal</li>
+</ul>
+
+<textarea class="visual-input"
+style="width:100%; height:140px;"></textarea>
+
+<button class="visual-btn" onclick="startVoice()">
+🎤 Speak
+</button>
+
+<button class="visual-btn">
+Submit
+</button>
+<script>
+
+let recognition = null;
+
+// check browser support
+if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+
+    recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+    recognition.continuous = false;
+    recognition.lang = 'en-US';
+
+    recognition.onresult = function(event) {
+
+        let text = event.results[0][0].transcript;
+
+        document.querySelector("textarea").value = text;
+    };
+
+}
+
+function startVoice(){
+
+    if(!recognition){
+        alert("Speech not supported in this browser");
+        return;
+    }
+
+    recognition.start();
+}
+
+</script>
+
+    </div>
+
+</div>
+
+</body>
+</html>

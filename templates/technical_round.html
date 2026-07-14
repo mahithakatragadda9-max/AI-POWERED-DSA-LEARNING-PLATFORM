@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rapid Fire</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="practice-page">
+
+    <h1 class="practice-title">Rapid Fire Round</h1>
+
+    <h2 id="timer">30</h2>
+
+    <div class="operation-card">
+
+        <p id="question">What is a Queue?</p>
+
+        <textarea class="visual-input"
+        id="answerBox"
+        style="width:100%; height:120px;"
+        placeholder="Type your answer..."></textarea>
+
+        <div class="op-controls">
+
+            <button class="visual-btn" onclick="submitAnswer()">
+                Submit
+            </button>
+
+            <button class="visual-btn" onclick="nextQuestion()">
+                Next
+            </button>
+
+        </div>
+
+        <div id="feedback"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+let questions = [
+    "What is Stack?",
+    "What is Queue?",
+    "What is Linked List?",
+    "What is Binary Tree?"
+];
+
+let i = 0;
+
+// TIMER
+let time = 30;
+
+setInterval(() => {
+
+    document.getElementById("timer").innerText = time;
+
+    time--;
+
+    if(time < 0){
+        alert("Time up!");
+        time = 30;
+        nextQuestion();
+    }
+
+}, 1000);
+
+function submitAnswer(){
+
+    let ans = document.getElementById("answerBox").value.trim();
+
+    if(ans.length === 0){
+        document.getElementById("feedback").innerHTML =
+        `<p style="color:red;">⚠ Please write an answer first</p>`;
+        return;
+    }
+
+    let score = 5;
+
+    if(ans.includes("queue")) score += 2;
+    if(ans.includes("fifo")) score += 2;
+    if(ans.includes("front")) score += 1;
+
+    document.getElementById("feedback").innerHTML =
+    `<p style="color:#60a5fa;">
+        Score: ${score}/10 (evaluated)
+    </p>`;
+}
+
+function nextQuestion(){
+
+    i++;
+
+ if(i >= questions.length){
+    document.getElementById("question").innerText =
+    "Interview Finished 🎉";
+
+    document.getElementById("answerBox").disabled = true;
+    return;
+}
+}
+
+</script>
+
+</body>
+</html>

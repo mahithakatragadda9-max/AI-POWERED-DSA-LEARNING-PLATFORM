@@ -1,0 +1,108 @@
+<div>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<head><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<h1>Results</h1>
+
+<div style="margin-bottom:20px;">
+<p>Total: {{ results.total }}</p>
+<p>Correct: {{ results.correct }}</p>
+<p>Wrong: {{ results.wrong }}</p>
+<p>Accuracy: {{ results.accuracy }}%</p>
+</div>
+
+<hr>
+
+{% if results.suggestions %}
+<h2>Adaptive Suggestions</h2>
+<ul>
+    {% for s in results.suggestions %}
+        <li>{{ s }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<hr>
+
+<div style="width:300px;height:300px;margin:20px auto;">
+    <canvas id="resultChart"></canvas>
+</div>
+
+<h2>Question Review</h2>
+
+{% for q in results.history %}
+
+<div style="
+padding:20px;
+margin-bottom:20px;
+border:1px solid gray;
+border-radius:10px;
+overflow-wrap:break-word;
+word-break:break-word;
+">
+
+    <h3>{{ q.question }}</h3>
+
+    <p>Topic: {{ q.topic }}</p>
+    <p>Difficulty: {{ q.difficulty }}</p>
+
+    <p><b>Your Answer:</b></p>
+    <pre style="white-space:pre-wrap;">{{ q.user_answer }}</pre>
+
+    {% if q.correct_answer %}
+    <p><b>Correct Answer:</b></p>
+    <pre style="white-space:pre-wrap;">{{ q.correct_answer }}</pre>
+    {% endif %}
+
+    <p><b>Status:</b> {{ q.status }}</p>
+
+    {% if q.feedback %}
+    <p><b>AI Feedback:</b></p>
+    <pre style="white-space:pre-wrap;word-break:break-word;">{{ q.feedback }}</pre>
+    {% endif %}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- YOUR EYE CHART (UNCHANGED) -->
+<div class="eye-chart">
+    <h2>Performance Vision Chart</h2>
+
+    <div class="eye-line">STACK QUEUE LINKED LIST TREE</div>
+    <div class="eye-line">STACK QUEUE LINKED LIST</div>
+    <div class="eye-line">STACK QUEUE</div>
+    <div class="eye-line">STACK</div>
+    <div class="eye-line">DSA</div>
+    <div class="eye-line">YOU NEED PRACTICE</div>
+</div>
+<script>
+const correct = {{ results.correct }};
+const wrong = {{ results.wrong }};
+
+const ctx = document.getElementById('resultChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Correct', 'Wrong'],
+        datasets: [{
+            data: [correct, wrong],
+            backgroundColor: [
+                '#4CAF50',
+                '#F44336'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+</script>

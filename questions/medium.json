@@ -1,0 +1,336 @@
+[
+  {
+    "topic": "stack",
+    "difficulty": "medium",
+    "questions": [
+      {
+        "type": "written",
+        "question": "Explain how postfix expression evaluation works using Stack.",
+        "hint": "Operands + operator order."
+      },
+      {
+        "type": "mcq",
+        "question": "Which problem commonly uses Stack?",
+        "options": [
+          "CPU Scheduling",
+          "Balanced Parentheses",
+          "Shortest Path",
+          "Graph Coloring"
+        ],
+        "correct_answer": "Balanced Parentheses",
+        "hint": "Opening and closing brackets."
+      },
+      {
+        "type": "written",
+        "question": "How would you implement Queue using Stack?",
+        "hint": "Think about reversing order."
+      },
+      {
+        "type": "mcq",
+        "question": "Which Stack problem finds next greater element?",
+        "options": [
+          "Recursion",
+          "Monotonic Stack",
+          "Binary Search",
+          "Heap"
+        ],
+        "correct_answer": "Monotonic Stack",
+        "hint": "Increasing/decreasing order."
+      },
+      {
+        "type": "written",
+        "question": "Explain browser undo functionality using Stack.",
+        "hint": "Last action first."
+      },
+      {
+        "type": "mcq",
+        "question": "In Stack, time complexity of Push and Pop is?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "correct_answer": "O(1)",
+        "hint": "Constant time."
+      },
+      {
+        "type": "written",
+        "question": "How can Stack be used in recursion?",
+        "hint": "Function call memory."
+      },
+      {
+        "type": "mcq",
+        "question": "Which notation can be evaluated easily using Stack?",
+        "options": [
+          "Infix",
+          "Postfix",
+          "Prefix only",
+          "Binary"
+        ],
+        "correct_answer": "Postfix",
+        "hint": "Operator after operands."
+      },
+      {
+        "type": "written",
+        "question": "Difference between recursive Stack and manual Stack.",
+        "hint": "System vs user created."
+      },
+      {
+        "type": "written",
+        "question": "Explain Next Greater Element approach.",
+        "hint": "Use stack to track values."
+      }
+    ]
+  },
+
+  {
+    "topic": "queue",
+    "difficulty": "medium",
+    "questions": [
+      {
+        "type": "written",
+        "question": "Explain Circular Queue and why it is useful.",
+        "hint": "Avoid wasted space."
+      },
+      {
+        "type": "mcq",
+        "question": "Which Queue is mainly used in CPU scheduling?",
+        "options": [
+          "Circular Queue",
+          "Priority Queue",
+          "Stack",
+          "Tree"
+        ],
+        "correct_answer": "Priority Queue",
+        "hint": "Priority matters."
+      },
+      {
+        "type": "written",
+        "question": "How would you implement Stack using Queue?",
+        "hint": "Reverse FIFO behavior."
+      },
+      {
+        "type": "mcq",
+        "question": "BFS traversal uses which structure?",
+        "options": [
+          "Stack",
+          "Queue",
+          "Heap",
+          "Array"
+        ],
+        "correct_answer": "Queue",
+        "hint": "Level order."
+      },
+      {
+        "type": "written",
+        "question": "Explain Queue in job scheduling systems.",
+        "hint": "Task waiting order."
+      },
+      {
+        "type": "mcq",
+        "question": "Which Queue type processes based on priority?",
+        "options": [
+          "Simple Queue",
+          "Priority Queue",
+          "Circular Queue",
+          "Deque"
+        ],
+        "correct_answer": "Priority Queue",
+        "hint": "Important tasks first."
+      },
+      {
+        "type": "written",
+        "question": "Difference between Queue and Circular Queue.",
+        "hint": "Reuse memory."
+      },
+      {
+        "type": "mcq",
+        "question": "Deque allows insertion?",
+        "options": [
+          "Front only",
+          "Rear only",
+          "Both ends",
+          "Middle only"
+        ],
+        "correct_answer": "Both ends",
+        "hint": "Double ended."
+      },
+      {
+        "type": "written",
+        "question": "Why is Queue useful in BFS?",
+        "hint": "Visit neighbors level-by-level."
+      },
+      {
+        "type": "written",
+        "question": "Explain printer queue system.",
+        "hint": "First request prints first."
+      }
+    ]
+  },
+
+  {
+    "topic": "linkedlist",
+    "difficulty": "medium",
+    "questions": [
+      {
+        "type": "written",
+        "question": "How would you detect a cycle in Linked List?",
+        "hint": "Fast and slow pointers."
+      },
+      {
+        "type": "mcq",
+        "question": "Which algorithm detects loop in Linked List?",
+        "options": [
+          "DFS",
+          "Binary Search",
+          "Floyd Cycle Detection",
+          "Merge Sort"
+        ],
+        "correct_answer": "Floyd Cycle Detection",
+        "hint": "Tortoise and Hare."
+      },
+      {
+        "type": "written",
+        "question": "Explain reversing a Linked List.",
+        "hint": "Change pointer directions."
+      },
+      {
+        "type": "mcq",
+        "question": "Which Linked List allows two-way traversal?",
+        "options": [
+          "Singly",
+          "Circular",
+          "Doubly",
+          "Linear"
+        ],
+        "correct_answer": "Doubly",
+        "hint": "Previous pointer."
+      },
+      {
+        "type": "written",
+        "question": "How to find middle node in Linked List?",
+        "hint": "Slow + fast pointer."
+      },
+      {
+        "type": "mcq",
+        "question": "Time complexity to insert at beginning?",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n)",
+          "O(n²)"
+        ],
+        "correct_answer": "O(1)",
+        "hint": "Direct insertion."
+      },
+      {
+        "type": "written",
+        "question": "Difference between singly and circular linked list.",
+        "hint": "Last node connection."
+      },
+      {
+        "type": "written",
+        "question": "How would you merge two sorted linked lists?",
+        "hint": "Compare nodes."
+      },
+      {
+        "type": "mcq",
+        "question": "Which Linked List is useful for browser tabs?",
+        "options": [
+          "Singly",
+          "Circular",
+          "Doubly",
+          "Array"
+        ],
+        "correct_answer": "Doubly",
+        "hint": "Back + forward."
+      },
+      {
+        "type": "written",
+        "question": "How can Linked List be used dynamically?",
+        "hint": "Memory flexibility."
+      }
+    ]
+  },
+
+  {
+    "topic": "tree",
+    "difficulty": "medium",
+    "questions": [
+      {
+        "type": "written",
+        "question": "How do you check if a Binary Tree is balanced?",
+        "hint": "Height difference."
+      },
+      {
+        "type": "mcq",
+        "question": "LCA stands for?",
+        "options": [
+          "Lowest Common Ancestor",
+          "Longest Child Area",
+          "Local Child Algorithm",
+          "Lowest Child Array"
+        ],
+        "correct_answer": "Lowest Common Ancestor",
+        "hint": "Common parent."
+      },
+      {
+        "type": "written",
+        "question": "Explain Lowest Common Ancestor.",
+        "hint": "Closest common parent."
+      },
+      {
+        "type": "mcq",
+        "question": "Which traversal gives level-wise nodes?",
+        "options": [
+          "Preorder",
+          "Inorder",
+          "Level Order",
+          "Postorder"
+        ],
+        "correct_answer": "Level Order",
+        "hint": "BFS."
+      },
+      {
+        "type": "written",
+        "question": "Explain diameter of Binary Tree.",
+        "hint": "Longest path."
+      },
+      {
+        "type": "written",
+        "question": "Difference between DFS and BFS traversal.",
+        "hint": "Depth vs level."
+      },
+      {
+        "type": "mcq",
+        "question": "Which structure is used in Level Order Traversal?",
+        "options": [
+          "Queue",
+          "Stack",
+          "Heap",
+          "HashMap"
+        ],
+        "correct_answer": "Queue",
+        "hint": "FIFO."
+      },
+      {
+        "type": "written",
+        "question": "How would you check if two trees are identical?",
+        "hint": "Compare nodes recursively."
+      },
+      {
+        "type": "mcq",
+        "question": "Boundary Traversal prints?",
+        "options": [
+          "Middle nodes",
+          "Outer nodes",
+          "Only root",
+          "Only leaves"
+        ],
+        "correct_answer": "Outer nodes",
+        "hint": "Boundary."
+      },
+      {
+        "type": "written",
+        "question": "Explain root-to-leaf path concept.",
+        "hint": "Root to ending node."
+      }
+    ]
+  }
+]

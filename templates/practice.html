@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DSA AI Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="practice-page">
+    <h1 class="practice-title">
+        🤖 DSA AI CHATBOT
+    </h1>
+
+    <p class="practice-subtitle">
+        Your personal AI guide for mastering DSA concepts.
+    </p>
+
+    <form method="POST">
+        <div class="question-box">
+            <input
+                type="text"
+                id="questionInput"
+                name="question"
+                placeholder="Ask any DSA question..."
+                required
+            >
+
+            <button
+                type="button"
+                id="micBtn"
+                onclick="startVoice()">
+                🎤
+            </button>
+
+            <button type="submit">
+                Ask AI
+            </button>
+        </div>
+    </form>
+
+    {% if answer %}
+
+    <div class="answer-card">
+        <h2>
+            AI Generated Solution
+        </h2>
+
+        <h3>Definition</h3>
+        <p style="white-space: pre-line;">
+            {{ answer.definition }}
+        </p>
+
+        <h3>Operations</h3>
+        <p style="white-space: pre-line;">
+            {{ answer.operations }}
+        </p>
+
+        <h3>Time Complexity</h3>
+        <p style="white-space: pre-line;">
+            {{ answer.complexity }}
+        </p>
+
+        <h3>Applications</h3>
+        <p style="white-space: pre-line;">
+            {{ answer.applications }}
+        </p>
+
+        <h3>Python Code</h3>
+        <pre>{{ answer.code }}</pre>
+
+        {% if visual_topic %}
+        <a href="/{{ visual_topic }}">
+            <button class="visual-btn">
+                Visualize Concept
+            </button>
+        </a>
+        {% endif %}
+
+        <hr>
+
+        <div class="validation-box">
+            <button
+                type="button"
+                onclick="toggleValidation()">
+                Verify Answer Accuracy
+            </button>
+        </div>
+
+        <div id="validationResult" class="validation-result"></div>
+    </div>
+
+    {% endif %}
+</div>
+
+<script>
+async function toggleValidation(){
+    const result = document.getElementById("validationResult");
+    result.style.display = "block";
+    result.innerHTML = "<p>Validating with AI...</p>";
+
+    try {
+        // ✅ Fix: Safely stringify variables with tojson filter
+        const question = {{ request.form.get('question', '') | tojson }};
+        
+        const answerText = `
+        {{ answer.definition if answer else '' }}
+        {{ answer.operations if answer else '' }}
+        {{ answer.complexity if answer else '' }}
+        {{ answer.applications if answer else '' }}
+        {{ answer.code if answer else '' }}
+        `;
+
+        const response = await fetch("/validate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                question: question,
+                answer: answerText.trim ? answerText.trim() : answerText
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`Server status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        result.innerHTML = `
+            <div class="validation-card">
+                <h3>Fine-Tune Validation</h3>
+                <div>
+                    ${data.result.replace(/\n/g, "<br>")}
+                </div>
+            </div>
+        `;
+    } catch(error) {
+        console.error("Validation Error:", error);
+        result.innerHTML = "<p>Validation failed</p>";
+    }
+}
+
+function startVoice(){
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        alert("Speech Recognition Not Supported in this browser.");
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+
+    recognition.onstart = function() {
+        console.log("Listening...");
+        const micBtn = document.getElementById("micBtn");
+        micBtn.style.background = "#ff4d4d"; // simple pulse cue
+    };
+
+    recognition.onresult = function(event) {
+        const text = event.results[0][0].transcript;
+        document.getElementById("questionInput").value = text;
+        document.getElementById("micBtn").style.background = "";
+    };
+
+    recognition.onerror = function(event) {
+        console.error("Speech Error: ", event.error);
+        document.getElementById("micBtn").style.background = "";
+    };
+
+    recognition.start();
+}
+</script>
+
+</body>
+</html>

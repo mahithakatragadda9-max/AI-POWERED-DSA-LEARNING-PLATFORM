@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interview Simulation Room</title>
+    <style>
+        body { background: #0f172a; color: #f8fafc; font-family: sans-serif; padding: 30px; }
+        .sandbox-card { background: #1e293b; border: 1px solid #334155; padding: 25px; border-radius: 12px; max-width: 700px; margin: 0 auto; }
+        textarea { width: 100%; height: 150px; background: #0f172a; color: #fff; border: 1px solid #334155; padding: 10px; border-radius: 6px; box-sizing: border-box; }
+        .btn { background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .result-box { background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 20px; border-radius: 8px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="sandbox-card">
+        <h2><i class="fa-solid fa-user-tie"></i> Interview Practice Room</h2>
+        <p style="color: #94a3b8;">Simulating active technical evaluation constraints.</p>
+        <hr style="border-color: #334155; margin-bottom: 20px;">
+
+        {% if not submitted %}
+            <h3>Active Scenario: {{ question.title }}</h3>
+            <p><strong>Topic:</strong> {{ question.topic }} | <strong>Difficulty:</strong> {{ question.difficulty }}</p>
+            <p style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 6px;">
+                {{ question.description if question.description else "Write a complete functional execution script solving this interview pattern optimally." }}
+            </p>
+
+            <form method="POST">
+                <input type="hidden" name="q_title" value="{{ question.title }}">
+                <label style="display:block; margin-bottom: 8px; font-weight: 600;">Type your solution / approach breakdown:</label>
+                <textarea name="user_answer" placeholder="Paste your code or structural logic explanation here..."></textarea>
+                <br><br>
+                <button type="submit" class="btn">Submit to Interviewer Panel</button>
+            </form>
+        {% else %}
+            <h3>Evaluation Matrix for: {{ q_title }}</h3>
+            <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+                <strong>Your Submission:</strong> <p style="font-family: monospace; white-space: pre-wrap;">{{ user_ans }}</p>
+            </div>
+
+            <div class="result-box">
+                <h4 style="margin-top: 0; color: #10b981;">Assessment Complete (Automated Validation Evaluation)</h4>
+                <p><strong>Response Matching Accuracy:</strong> {{ accuracy }}</p>
+                <p style="color: #f87171;"><strong>Gaps Identified:</strong> {{ missing }}</p>
+            </div>
+            <br>
+            <a href="/interview-mode/practice" class="btn" style="text-decoration:none; display:inline-block;">Next Mock Question</a>
+        {% endif %}
+    </div>
+</body>
+</html>

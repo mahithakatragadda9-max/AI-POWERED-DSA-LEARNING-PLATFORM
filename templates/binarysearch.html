@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Binary Search Visualizer</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="practice-page">
+
+    <h1 class="practice-title">
+        Binary Search Visualizer
+    </h1>
+
+    <p class="practice-subtitle">
+        Divide and Conquer Search Algorithm
+    </p>
+
+    <div class="operation-card">
+
+        <h2>How Binary Search Works</h2>
+
+        <p>
+            Binary Search finds an element in a sorted array
+            by repeatedly dividing the search space.
+        </p>
+
+        <div class="op-controls">
+
+            <input
+            type="number"
+            id="target"
+            class="visual-input"
+            placeholder="Enter target">
+
+            <button class="visual-btn"
+            onclick="search()">
+                Start Search
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="arrayBox"
+    class="bs-box-container">
+
+    </div>
+
+</div>
+
+
+<script>
+
+let arr = [2,4,6,8,10,12,14,16];
+let low = 0;
+let high = arr.length - 1;
+
+function renderArray(mid = -1){
+
+    const box =
+    document.getElementById("arrayBox");
+
+    box.innerHTML = "";
+
+    for(let i = 0; i < arr.length; i++){
+
+        let color = "#1e293b";
+
+        if(i === mid) color = "#22c55e";
+
+        box.innerHTML += `
+            <div class="bs-item" style="background:${color}">
+                ${arr[i]}
+            </div>
+        `;
+    }
+}
+
+function search(){
+
+    let target =
+    parseInt(document.getElementById("target").value);
+
+    low = 0;
+    high = arr.length - 1;
+
+    function step(){
+
+        if(low > high){
+            alert("Not Found 😢");
+            return;
+        }
+
+        let mid =
+        Math.floor((low + high)/2);
+
+        renderArray(mid);
+
+        if(arr[mid] === target){
+            alert("Found at index " + mid);
+            return;
+        }
+
+        if(arr[mid] < target){
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+
+        setTimeout(step, 1000);
+    }
+
+    step();
+}
+
+renderArray();
+
+</script>
+
+</body>
+</html>

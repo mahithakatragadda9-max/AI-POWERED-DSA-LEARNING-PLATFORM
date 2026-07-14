@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Mode - PYQs Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Encapsulated styling overrides to completely insulate this page against style.css bugs */
+        .pyq-wrapper-env {
+            background-color: #0f172a !important;
+            color: #f8fafc !important;
+            font-family: 'Segoe UI', Roboto, sans-serif !important;
+            padding: 20px !important;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .pyq-container {
+            max-width: 1000px !important;
+            margin: 0 auto !important;
+            padding-bottom: 80px !important;
+        }
+
+        .dashboard-header {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            background: #1e293b !important;
+            border: 1px solid #334155 !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+            margin-bottom: 30px !important;
+        }
+
+        .streak-box {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            font-size: 1.2rem !important;
+            font-weight: 600 !important;
+            color: #f59e0b !important;
+        }
+
+        .overall-progress {
+            font-size: 1rem !important;
+            color: #94a3b8 !important;
+        }
+
+        .overall-progress span {
+            color: #10b981 !important;
+            font-weight: bold !important;
+        }
+
+        .view-heading {
+            font-size: 1.4rem !important;
+            font-weight: 700 !important;
+            color: #3b82f6 !important;
+            margin: 30px 0 15px 0 !important;
+            padding-bottom: 5px !important;
+            border-bottom: 2px solid #334155 !important;
+        }
+
+        .section-wrapper {
+            margin-bottom: 12px !important;
+            background: #1e293b !important;
+            border: 1px solid #334155 !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            display: block !important;
+        }
+
+        .section-header {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 16px 20px !important;
+            cursor: pointer !important;
+            user-select: none !important;
+            position: relative !important;
+            z-index: 10 !important;
+            pointer-events: auto !important;
+            background: #1e293b !important;
+        }
+
+        .section-header:hover {
+            background: rgba(255, 255, 255, 0.04) !important;
+        }
+
+        .section-title-block {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 4px !important;
+        }
+
+        .section-name {
+            font-size: 1.1rem !important;
+            font-weight: 600 !important;
+            color: #f8fafc !important;
+        }
+
+        .section-meta {
+            font-size: 0.85rem !important;
+            color: #94a3b8 !important;
+        }
+
+        .section-right {
+            display: flex !important;
+            align-items: center !important;
+            gap: 15px !important;
+        }
+
+        .company-preview-logos {
+            display: flex !important;
+            gap: 6px !important;
+        }
+
+        .company-logo-badge {
+            background: rgba(59, 130, 246, 0.15) !important;
+            color: #60a5fa !important;
+            font-size: 0.75rem !important;
+            padding: 3px 8px !important;
+            border-radius: 4px !important;
+            font-weight: 600 !important;
+        }
+
+        .chevron-icon {
+            transition: transform 0.2s ease !important;
+            color: #94a3b8 !important;
+        }
+
+        .section-wrapper.active .chevron-icon {
+            transform: rotate(180deg) !important;
+        }
+
+        .section-content {
+            display: none !important;
+            border-top: 1px solid #334155 !important;
+            background: rgba(15, 23, 42, 0.8) !important;
+            overflow-x: auto !important;
+        }
+
+        .section-wrapper.active .section-content {
+            display: block !important;
+        }
+
+        .q-table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            text-align: left !important;
+            font-size: 0.95rem !important;
+        }
+
+        .q-table th {
+            background: rgba(0, 0, 0, 0.4) !important;
+            color: #94a3b8 !important;
+            font-weight: 600 !important;
+            padding: 12px 16px !important;
+            font-size: 0.85rem !important;
+            text-transform: uppercase !important;
+        }
+
+        .q-table td {
+            padding: 14px 16px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+            color: #f8fafc !important;
+        }
+
+        .checkbox-container {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .q-checkbox {
+            width: 18px !important;
+            height: 18px !important;
+            cursor: pointer !important;
+            accent-color: #10b981 !important;
+        }
+
+        .q-link {
+            color: #f8fafc !important;
+            text-decoration: none !important;
+            font-weight: 500 !important;
+        }
+
+        .q-link:hover {
+            color: #3b82f6 !important;
+            text-decoration: underline !important;
+        }
+
+        .difficulty-badge {
+            display: inline-block !important;
+            padding: 3px 8px !important;
+            border-radius: 4px !important;
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+        }
+
+        .difficulty-badge.easy { background: rgba(16, 185, 129, 0.15) !important; color: #34d399 !important; }
+        .difficulty-badge.medium { background: rgba(245, 158, 11, 0.15) !important; color: #fbbf24 !important; }
+        .difficulty-badge.hard { background: rgba(239, 68, 68, 0.15) !important; color: #f87171 !important; }
+
+        .company-list {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 4px !important;
+        }
+
+        .company-tag {
+            background: rgba(255, 255, 255, 0.05) !important;
+            color: #94a3b8 !important;
+            font-size: 0.8rem !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
+        }
+
+        .repeat-count {
+            color: #f59e0b !important;
+            font-weight: 600 !important;
+        }
+
+        .pyq-footer-links {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            margin-top: 40px !important;
+            padding-top: 20px !important;
+            border-top: 1px solid #334155 !important;
+        }
+
+        .min-foot-link {
+            color: #94a3b8 !important;
+            text-decoration: none !important;
+            font-size: 0.9rem !important;
+            transition: color 0.2s !important;
+        }
+
+        .min-foot-link:hover {
+            color: #3b82f6 !important;
+        }
+        
+        .empty-fallback-msg {
+            padding: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px dashed #ef4444;
+            border-radius: 8px;
+            color: #f87171;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body class="pyq-wrapper-env">
+    <div id="scorecard-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.85); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 16px; width: 90%; max-width: 450px; padding: 30px; text-align: center; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 3.5rem; margin-bottom: 10px;">🏆</div>
+        <h2 style="color: #f8fafc; margin-top: 0; font-size: 1.6rem;">Practice Session Results</h2>
+        <p style="color: #94a3b8; font-size: 0.95rem;">Technical Practice Score Sheet Updated Successfully.</p>
+        
+        <div style="margin: 25px auto; width: 140px; height: 140px; border-radius: 50%; border: 4px solid #10b981; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(16, 185, 129, 0.05);">
+            <div id="modal-final-score" style="font-size: 2.2rem; font-weight: 800; color: #10b981;">0</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; font-weight: 600; letter-spacing: 1px;">Total Marks</div>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-bottom: 25px; font-size: 0.9rem; color: #cbd5e1;">
+            Accuracy Rate: <strong id="modal-accuracy-metric" style="color: #3b82f6;">0%</strong>
+        </div>
+
+        <button onclick="document.getElementById('scorecard-modal').style.display = 'none'" 
+                style="background: #3b82f6; color: white; border: none; padding: 10px 24px; font-size: 0.95rem; font-weight: 600; border-radius: 6px; cursor: pointer; width: 100%; transition: background 0.2s;">
+            Dismiss Scorecard
+        </button>
+    </div>
+</div>
+
+    <div class="pyq-container">
+        
+        <div class="dashboard-header">
+            <div class="streak-box">
+                <i class="fa-solid fa-fire"></i>
+                <span>Daily Streak: <strong>{{ streak_count if streak_count else 0 }}</strong> Days</span>
+            </div>
+            <div class="overall-progress">
+                Total Solved: <span id="overall-solved-count">0</span> / <span id="overall-total-count">117</span>
+            </div>
+        </div>
+
+        <div class="view-heading">Topic Wise Progress</div>
+        <div id="topic-view">
+            {% if topics %}
+                {% for topic_name, topic_data in topics.items() %}
+                <div class="section-wrapper">
+                    <div class="section-header" onclick="toggleAccordion(this)">
+                        <div class="section-title-block">
+                            <div class="section-name">{{ topic_name }}</div>
+                            <div class="section-meta">
+                                <span class="progress-txt" data-total="{{ topic_data.questions|length }}">0/{{ topic_data.questions|length }} Solved</span>
+                            </div>
+                        </div>
+                        <div class="section-right">
+                            <div class="company-preview-logos">
+                                {% for company in topic_data.top_companies[:3] %}
+                                    <span class="company-logo-badge">{{ company }}</span>
+                                {% endfor %}
+                            </div>
+                            <i class="fa-solid fa-chevron-down chevron-icon"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <table class="q-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 8%; text-align: center;">Solved</th>
+                                    <th style="width: 47%;">Question Title</th>
+                                    <th style="width: 15%;">Difficulty</th>
+                                    <th style="width: 20%;">Companies</th>
+                                    <th style="width: 10%;">Repeated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for q in topic_data.questions %}
+                                <tr>
+                                    <td class="checkbox-container">
+                                        <input type="checkbox" class="q-checkbox" data-qid="{{ q.id }}" {% if q.solved %}checked{% endif %} onchange="updateProgress(this)">
+                                    </td>
+                                    <td>
+                                        <a href="{{ q.link }}" target="_blank" class="q-link">{{ q.title }} <i class="fa-solid fa-external-link" style="font-size:0.75rem; opacity:0.4; margin-left:4px;"></i></a>
+                                    </td>
+                                    <td>
+                                        <span class="difficulty-badge {{ q.difficulty|lower }}">{{ q.difficulty }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="company-list">
+                                            {% if q.companies is iterable and q.companies is not string %}
+                                                {% for comp in q.companies %}
+                                                    <span class="company-tag">{{ comp }}</span>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="repeat-count">×{{ q.repeated if q.repeated else 1 }}</span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-fallback-msg">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <strong>Data Missing:</strong> Python didn't send any data to 'topics'. Verify your <code>app.py</code> path logic connects to <code>dsa/questions/hr_questions.json</code>.
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="view-heading" style="margin-top: 50px;">Pattern Wise Progress</div>
+        <div id="pattern-view">
+            {% if patterns %}
+                {% for pattern_name, pattern_data in patterns.items() %}
+                <div class="section-wrapper">
+                    <div class="section-header" onclick="toggleAccordion(this)">
+                        <div class="section-title-block">
+                            <div class="section-name">{{ pattern_name }}</div>
+                            <div class="section-meta">
+                                <span class="progress-txt" data-total="{{ pattern_data.questions|length }}">0/{{ pattern_data.questions|length }} Solved</span>
+                            </div>
+                        </div>
+                        <div class="section-right">
+                            <i class="fa-solid fa-chevron-down chevron-icon"></i>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <table class="q-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 8%; text-align: center;">Solved</th>
+                                    <th style="width: 47%;">Question Title</th>
+                                    <th style="width: 15%;">Difficulty</th>
+                                    <th style="width: 20%;">Companies</th>
+                                    <th style="width: 10%;">Repeated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for q in pattern_data.questions %}
+                                <tr>
+                                    <td class="checkbox-container">
+                                        <input type="checkbox" class="q-checkbox" data-qid="{{ q.id }}" {% if q.solved %}checked{% endif %} onchange="updateProgress(this)">
+                                    </td>
+                                    <td>
+                                        <a href="{{ q.link }}" target="_blank" class="q-link">{{ q.title }}</a>
+                                    </td>
+                                    <td>
+                                        <span class="difficulty-badge {{ q.difficulty|lower }}">{{ q.difficulty }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="company-list">
+                                            {% if q.companies is iterable and q.companies is not string %}
+                                                {% for comp in q.companies %}
+                                                    <span class="company-tag">{{ comp }}</span>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="repeat-count">×{{ q.repeated if q.repeated else 1 }}</span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-fallback-msg">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <strong>Data Missing:</strong> Python didn't send any data to 'patterns'.
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="pyq-footer-links">
+            <a href="/pyq/must-solve" class="min-foot-link"><i class="fa-solid fa-star" style="color: #3b82f6;"></i> Check Must Do Questions</a>
+            <a href="/pyq/most-repeated" class="min-foot-link"><i class="fa-solid fa-fire" style="color: #f59e0b;"></i> Check Most Repeated Questions</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Solid layout accordion toggle handler
+        function toggleAccordion(headerElement) {
+            const wrapper = headerElement.closest('.section-wrapper');
+            if (wrapper) {
+                wrapper.classList.toggle('active');
+            }
+        }
+
+        // Live Metric Counters Processor
+        function recalculateMetrics() {
+            const uniqueSolvedIds = new Set();
+
+            document.querySelectorAll('#topic-view .section-wrapper').forEach(card => {
+                const checkBoxes = card.querySelectorAll('.q-checkbox');
+                const totalInCard = checkBoxes.length;
+                let solvedInCard = 0;
+
+                checkBoxes.forEach(box => {
+                    if (box.checked) {
+                        solvedInCard++;
+                        uniqueSolvedIds.add(box.getAttribute('data-qid'));
+                    }
+                });
+
+                const txtBlock = card.querySelector('.progress-txt');
+                if (txtBlock) {
+                    txtBlock.textContent = `${solvedInCard}/${totalInCard} Solved`;
+                }
+            });
+
+            // Update matching layout card calculations for patterns section
+            document.querySelectorAll('#pattern-view .section-wrapper').forEach(card => {
+                const checkBoxes = card.querySelectorAll('.q-checkbox');
+                const totalInCard = checkBoxes.length;
+                let solvedInCard = 0;
+
+                checkBoxes.forEach(box => {
+                    if (box.checked) { solvedInCard++; }
+                });
+
+                const txtBlock = card.querySelector('.progress-txt');
+                if (txtBlock) {
+                    txtBlock.textContent = `${solvedInCard}/${totalInCard} Solved`;
+                }
+            });
+
+            document.getElementById('overall-solved-count').textContent = uniqueSolvedIds.size;
+        }
+
+        // Checkbox Synchronizer Event Router
+        function updateProgress(checkboxElement) {
+            const questionId = checkboxElement.getAttribute('data-qid');
+            const isChecked = checkboxElement.checked;
+
+            // Instantly sync identical question checkboxes across both sections
+            document.querySelectorAll(`[data-qid="${questionId}"]`).forEach(box => {
+                box.checked = isChecked;
+            });
+
+            recalculateMetrics();
+
+            fetch('/api/update-pyq-status', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: questionId, solved: isChecked })
+            })
+            .catch(err => console.error("Error updating tracking state:", err));
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            recalculateMetrics();
+        });
+    </script>
+</body>
+</html>
